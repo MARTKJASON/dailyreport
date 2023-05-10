@@ -1,0 +1,111 @@
+<html>
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/94c359418c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+      .report {
+        border: 1px solid black;
+        margin: 5px;
+        padding: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Daily Report </h1>
+    <form id="create-form">
+        <label for="date" class="date" >Date:</label><br>
+        <input type="date" id="date" max_length="255" required ><br>
+        <h3 class="title">Progress</h3>
+        <div id="progress-container"></div>
+        <textarea type="text" id="progress" max_length="255" required ></textarea>
+        
+        <h3 class="title">Problems</h3>
+        <div id="problems-container"></div>
+        <textarea type="text" id="problems" max_length="255" required></textarea>
+        
+        <h3 class="title">Plan</h3>
+        <div id="plan-container"></div>
+        <textarea type="text" id="plan" ></textarea>
+        
+        <br><br>
+        <input type="submit" value="Create Report" required >
+      </form>
+
+    <div id="reports" >
+      
+    </div>
+
+    <br><br>
+    <script>
+      const reports = [];
+
+      function createReport(date, progress, problems, plan) {
+        const report = {
+          date: date,
+          progress: progress,
+          problems: problems,
+          plan: plan
+        };
+        
+        reports.push(report);
+      }
+
+function addBtn(){
+    var button = document.createElement("add-progress-button");
+       button.innerHTML = "Add field";
+
+// Append the button to the DOM
+document.body.appendChild(button);
+
+// Add an event listener to the button
+button.addEventListener("click", function() {
+  // Create an input element
+  var input = document.createElement("input");
+  input.type = "text";
+
+  // Append the input to the DOM
+  document.body.appendChild(input);
+});
+}
+
+      function displayReports() {
+        const reportsDiv = document.getElementById('reports');
+        reportsDiv.innerHTML = '';
+        for (let i = 0; i < reports.length; i++) {
+          const report = reports[i];
+          const reportDiv = document.createElement('div');
+          reportDiv.classList.add('report');
+          reportDiv.innerHTML = `
+          <button class="delete"> <i class="fa-sharp fa-solid fa-trash"></i></button><br><br>
+           <div class=reportcontainer > 
+            <h2>Report for ${report.date} </h2>
+            <h2>Progress: </h2><span class="title2">${report.progress}<span>
+            <h2>Problems:</h2> <span class="title2">${report.problems}<span>
+            <h2>Plan: </h2> <span class="title2">${report.plan}<span> 
+            
+            </div>
+            <br><br>
+          `;
+          reportsDiv.appendChild(reportDiv);
+        }
+      }
+
+      document.getElementById('create-form').addEventListener('submit', event => {
+        event.preventDefault();
+        const date = document.getElementById('date').value;
+        const progress = document.getElementById('progress').value;
+        const problems = document.getElementById('problems').value;
+        const plan = document.getElementById('plan').value;
+        createReport(date, progress, problems, plan);
+        displayReports();
+      });
+
+      displayReports();
+    </script>
+  </body>
+</html>

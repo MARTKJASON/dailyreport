@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/signup_login.css">
+    <title>Document</title>
+</head>
+<body>
+ <title>Login</title>
+ <h1>Start to track your Progress!</h1>
+    <form action="" method="post">
+<div class="login" id="login">
+    <h3>Login</h3>
+    <!-- <span class="Username">Username</span><br> -->
+    <input type="text" class="username" placeholder="Username" required> <br><br>
+    <!-- <span class="password">Password</span><br> -->
+    <input type="password" class="password" placeholder="Password" required><br> <br>    
+    <input type="submit" value="Login"> 
+    
+    <span class="sign-up" id="sign-up" onclick="Signup()">Register here</span> <br><br>
+
+    <a href="index.html">maintainance is ongoing please click here</a>
+</div>
+   </form>
+
+   <form action="" method="post">
+<div class="signup" id="signup">
+    <h3>Sign up</h3>
+    <span class="username">Username</span><br>
+    <input type="text" class="username" required> <br><br>
+    <span class="password">Create a Password</span><br>
+    <input type="password" class="password" id="pass1" required><br> <br>
+    <span class="password">Confirm Password</span><br>
+    <input type="password" class="password" id="pass2" required><br> <br>
+    <input type="submit" value="register">
+    <span class="log-in" id="log-in" onclick="Login()">Login  here</span>
+</div>
+<div class="image">
+    <img src="/src/digital_artist_male.jpg" alt="image" height="600px" width="600px">
+</div>
+    </form> 
+    <script>
+        function Signup(){
+            document.getElementById("signup").style.display = "block";
+            document.getElementById("login").style.display = "none";
+            } 
+
+         function Login(){
+            document.getElementById("login").style.display = "block";
+            document.getElementById("signup").style.display = "none";
+         
+            }
+    </script>
+</body>
+</html>

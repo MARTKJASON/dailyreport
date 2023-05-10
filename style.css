@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;700&family=Noto+Sans+Kannada:wght@300&family=Poppins:wght@500&display=swap');
+
+* {
+    
+    box-sizing: border-box;
+}
+body {
+    position: relative;
+    margin-left: 20%;
+    font-family: 'Poppins', sans-serif;
+}
+
+.SetTime{
+
+	display: inline-flex;
+}
+
+.SetTime li{
+
+	list-style: none;
+	margin-right: 6em;
+	
+}
+
+.SetTime li input{
+
+	padding: 5px 10px;
+	width: 100%;
+	border: none;
+	border: thin solid #d4d4d4; 
+	font-size: 15px;
+	color: rgb(37, 37, 37);
+	font-family: ubuntu, sans-serif;
+	background-color: #f9f9f9;
+}
+
+.SetTime li input:focus{
+
+	outline-color: rgb(0, 78, 52);
+}
+
+
+
+form{
+	width:  100%;
+}
+
+.progress{
+	margin-bottom: 10px;
+	display: flex;
+	transition: opacity 0.3s;
+}
+
+.progress input{
+	padding: 5px 10px;
+	width: 50%;
+	border: none;
+	 border: thin solid #d4d4d4; 
+	font-size: 20px;
+	color: #888;
+	font-family: ubuntu, sans-serif;
+	background-color: #f9f9f9;
+}
+.progress input:focus{
+	outline: none;
+}
+
+progress button{
+	display: inline-block;
+	margin-left: 30px;
+	cursor: pointer;
+	background-color: #f9f9f9;
+	padding: 10px;
+	font-size: 18px;
+	transition: all 0.3s;
+	font-weight: bold;
+	border: thin solid #d4d4d4; 
+}
+progress button{
+	display: none;
+	padding: 12px;
+}
+.progress button:hover{
+	background-color: green;
+	border: thin solid green;
+	color: #fff;
+}
+.progress span:last-child:hover{
+	background-color: red;
+	border: thin solid red;
+	color: #fff;
+}
+.Submit{
+
+	margin-top: 15px;
+	cursor: pointer;
+	background-color: #0b9dff;
+	padding: 10px;
+	font-size: 16px;
+	transition: all 0.3s;
+	font-weight: bold;
+	border: thin solid #d4d4d4; 
+	color: #f9f9f9;
+
+}
+.Submit:hover{
+	background-color: #006fb9;
+}
