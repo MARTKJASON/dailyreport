@@ -17,12 +17,13 @@
   </head>
   <body>
     <h1>Daily Report </h1>
-    <form id="create-form">
+    <form id="create-form" required>
         <label for="date" class="date" >Date:</label><br>
-        <input type="date" id="date" max_length="255" required ><br>
+        <input type="date" id="date" max_length="255" required><br>
         <h3 class="title">Progress</h3>
         <div id="progress-container"></div>
         <textarea type="text" id="progress" max_length="255" required ></textarea>
+       
         
         <h3 class="title">Problems</h3>
         <div id="problems-container"></div>
@@ -33,79 +34,110 @@
         <textarea type="text" id="plan" ></textarea>
         
         <br><br>
-        <input type="submit" value="Create Report" required >
+        <input type="submit" value="Create Report" id="submit" onclick="submitData()" required >
       </form>
 
-    <div id="reports" >
+
+  <div class="reports" id="reports">
+
+
+
+  </div>
       
-    </div>
+   
 
     <br><br>
     <script>
-      const reports = [];
+     
+      
+      function submitData() {
+    
 
-      function createReport(date, progress, problems, plan) {
-        const report = {
-          date: date,
-          progress: progress,
-          problems: problems,
-          plan: plan
-        };
-        
-        reports.push(report);
-      }
-
-function addBtn(){
-    var button = document.createElement("add-progress-button");
-       button.innerHTML = "Add field";
-
-// Append the button to the DOM
-document.body.appendChild(button);
-
-// Add an event listener to the button
-button.addEventListener("click", function() {
-  // Create an input element
-  var input = document.createElement("input");
-  input.type = "text";
-
-  // Append the input to the DOM
-  document.body.appendChild(input);
-});
-}
-
-      function displayReports() {
-        const reportsDiv = document.getElementById('reports');
-        reportsDiv.innerHTML = '';
-        for (let i = 0; i < reports.length; i++) {
-          const report = reports[i];
-          const reportDiv = document.createElement('div');
-          reportDiv.classList.add('report');
-          reportDiv.innerHTML = `
-          <button class="delete"> <i class="fa-sharp fa-solid fa-trash"></i></button><br><br>
-           <div class=reportcontainer > 
-            <h2>Report for ${report.date} </h2>
-            <h2>Progress: </h2><span class="title2">${report.progress}<span>
-            <h2>Problems:</h2> <span class="title2">${report.problems}<span>
-            <h2>Plan: </h2> <span class="title2">${report.plan}<span> 
+        var Progress = document.getElementById('progress').value;
+        var Problems= document.getElementById('problems').value;
+        var Plan = document.getElementById('plan').value;
+        var Date = document.getElementById('date').value;
             
-            </div>
-            <br><br>
-          `;
-          reportsDiv.appendChild(reportDiv);
-        }
+
+
+        const  data  ={  Progress, Plan, Problems, Date }
+        
+        const jsonData = localStorage.getItem("userData"); 
+        let userData = [];
+        if (jsonData) {
+        userData = JSON.parse(jsonData);
+     
+
+      }
+       userData.push(data);
+       const newJsonData = JSON.stringify(userData);
+       localStorage.setItem("userData", newJsonData);
+
+       displayData();
+    }
+    
+    function removeData(index) {
+      // Retrieve the existing data from local storage
+      const jsonData = localStorage.getItem("userData");
+      let userData = [];
+      if (jsonData) {
+        userData = JSON.parse(jsonData);
       }
 
-      document.getElementById('create-form').addEventListener('submit', event => {
-        event.preventDefault();
-        const date = document.getElementById('date').value;
-        const progress = document.getElementById('progress').value;
-        const problems = document.getElementById('problems').value;
-        const plan = document.getElementById('plan').value;
-        createReport(date, progress, problems, plan);
-        displayReports();
-      });
+      // Remove the data at the specified index
+      userData.splice(index, 1);
 
-      displayReports();
+      // Convert the array to a JSON string
+      const newJsonData = JSON.stringify(userData);
+
+      // Save the JSON string in local storage
+      localStorage.setItem("userData", newJsonData);
+
+      // Call the displayData function to display the updated data
+      displayData();
+    }
+
+
+    function displayData() {
+      const jsonData = localStorage.getItem("userData");
+      if (!jsonData) {
+        return;
+      }
+
+      const userData = JSON.parse(jsonData);
+
+      let html = "";
+      for (let i = 0; i < userData.length; i++) {
+        html += `
+
+        <div class="report" >
+ 
+          <h2>Reported on ${userData[i].Date}</h2>
+          <h2>Progress:</h2> <p>${userData[i].Progress}</p>
+          <h2>Problems:</h2> <p>${userData[i].Problems}</p>
+          <h2>Plan:</h2> <p>${userData[i].Plan}</p>
+          <button onclick="removeData(${i})" value="Delete">Delete</button>
+          
+         
+
+        </div>
+         
+        `;
+      }
+
+
+      document.getElementById("reports").innerHTML = html;
+      
+
+        }
+
+        displayData();
+
+
+       
+
+
+
     </script>
   </body>
 </html>
