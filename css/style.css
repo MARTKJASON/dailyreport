@@ -9,9 +9,12 @@ html , body {
  h1 {
 
     font-family: 'Poppins', sans-serif;
-    position: relative;
+    position: fixed;
     text-align: center;
-   
+    margin-left: 40%;
+    z-index: 1;
+
+    
 
  } 
  
@@ -129,7 +132,7 @@ form input[type=submit]:active {
     height: auto;
     min-height: 300px;
     width: 800px;
-    
+    margin-top: 10%;
     font-family: 'Poppins', sans-serif;
 
 }
@@ -156,4 +159,21 @@ form input[type=submit]:active {
 
    font-family: "JetBrains Mono",monospace;
  
+}
+
+.delete{
+
+   background-color: red;
+   padding: 10px;
+   color: #fff;
+   border: none;
+   width: 5rem;
+   border-radius: 5px;
+}
+.delete:hover{
+
+   background-color: rgb(147, 0, 0);
+   padding: 10px;
+   color: #fff;
+   border: none;
 }
